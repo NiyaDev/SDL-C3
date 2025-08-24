@@ -320,6 +320,12 @@ const KEY_RMETA                  = 0x20000005; /**< Extended key Right Meta */
 const KEY_LHYPER                 = 0x20000006; /**< Extended key Left Hyper */
 const KEY_RHYPER                 = 0x20000007; /**< Extended key Right Hyper */
 
+const MOUSE_LEFT   = 1;
+const MOUSE_MIDDLE = 2;
+const MOUSE_RIGHT  = 3;
+const MOUSE_X1     = 4;
+const MOUSE_X2     = 5;
+
 enum GLAttr {
   RED_SIZE,                    /**< the minimum number of bits for the red channel of the color buffer; defaults to 8. */
   GREEN_SIZE,                  /**< the minimum number of bits for the green channel of the color buffer; defaults to 8. */
@@ -355,6 +361,8 @@ union SDL_Event {
   uint type;
 
   SDL_KeyboardEvent key;
+  SDL_MouseMotionEvent motion;
+  SDL_MouseButtonEvent button;
   SDL_MouseWheelEvent wheel;
   
   char[128] padding;
@@ -433,6 +441,32 @@ struct SDL_MouseWheelEvent {
   int int_y;
 }
 
+struct SDL_MouseMotionEvent {
+  uint type;
+  uint reserved;
+
+  ulong timestamp;
+  uint windowID;
+  uint which;
+  uint state;
+  float x, y;
+  float xrel, yrel;
+}
+
+struct SDL_MouseButtonEvent {
+  uint type;
+  uint reserved;
+
+  ulong timestamp;
+  uint windowID;
+  uint which;
+  char button;
+  bool down;
+  char clicks;
+  char padding;
+  float x, y;
+}
+
 //struct SDL_ {}
 
 
@@ -442,11 +476,11 @@ alias SDL_GLContext = void;
 
 extern fn bool init(uint) @extern("SDL_Init");
 extern fn SDL_Window* create_window(char*, int, int, uint) @extern("SDL_CreateWindow");
-extern fn SDL_Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
-extern fn bool poll_event(SDL_Event*) @extern("SDL_PollEvent");
-extern fn ulong get_ticks() @extern("SDL_GetTicks");
 extern fn void destroy_window(SDL_Window*) @extern("SDL_DestroyWindow");
+extern fn SDL_Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
+extern fn ulong get_ticks() @extern("SDL_GetTicks");
 extern fn void quit() @extern("SDL_Quit");
+
 extern fn char* get_error() @extern("SDL_GetError");
 
 extern fn SDL_GLContext* gl_create_context(SDL_Window*) @extern("SDL_GL_CreateContext");
@@ -454,3 +488,5 @@ extern fn bool gl_make_current(SDL_Window*, SDL_GLContext*) @extern("SDL_GL_Make
 extern fn bool gl_set_attribute(GLAttr, int) @extern("SDL_GL_SetAttribute");
 extern fn bool gl_swap_window(SDL_Window*) @extern("SDL_GL_SwapWindow");
 
+extern fn bool poll_event(SDL_Event*) @extern("SDL_PollEvent");
+extern fn uint get_mouse_state(float* x, float* y) @extern("SDL_GetMouseState");
