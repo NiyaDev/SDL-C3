@@ -469,24 +469,79 @@ struct SDL_MouseButtonEvent {
 
 //struct SDL_ {}
 
+alias DisplayID = uint;
+alias PixelFormat = uint;
+alias DisplayModeData = void;
+struct DisplayMode {
+  DisplayID displayID;
+  PixelFormat format;
+  int w,h;
+  float pixelDensity;
+  float refreshRate;
+  int rrNumerator, rrDenominator;
+
+  DisplayModeData* internal;
+}
+
+enum ProgressState {
+  NONE,
+  INDETERMINATE,
+  NORMAL,
+  PAUSED,
+  ERROR,
+}
+
 
 alias SDL_Window = void;
 alias SDL_Surface = void;
 alias SDL_GLContext = void;
 
 extern fn bool init(uint) @extern("SDL_Init");
-extern fn SDL_Window* create_window(char*, int, int, uint) @extern("SDL_CreateWindow");
-extern fn void destroy_window(SDL_Window*) @extern("SDL_DestroyWindow");
 extern fn SDL_Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
 extern fn ulong get_ticks() @extern("SDL_GetTicks");
 extern fn void quit() @extern("SDL_Quit");
 
 extern fn char* get_error() @extern("SDL_GetError");
 
+// OpenGL
 extern fn SDL_GLContext* gl_create_context(SDL_Window*) @extern("SDL_GL_CreateContext");
 extern fn bool gl_make_current(SDL_Window*, SDL_GLContext*) @extern("SDL_GL_MakeCurrent");
 extern fn bool gl_set_attribute(GLAttr, int) @extern("SDL_GL_SetAttribute");
 extern fn bool gl_swap_window(SDL_Window*) @extern("SDL_GL_SwapWindow");
 
+// Events
 extern fn bool poll_event(SDL_Event*) @extern("SDL_PollEvent");
 extern fn uint get_mouse_state(float* x, float* y) @extern("SDL_GetMouseState");
+
+
+// Window management
+extern fn SDL_Window* create_window(char* title, int w, int h, uint flags) @extern("SDL_CreateWindow");
+extern fn void destroy_window(SDL_Window* window) @extern("SDL_DestroyWindow");
+extern fn bool hide_window(SDL_Window* window) @extern("SDL_HideWindow");
+extern fn bool maximize_window(SDL_Window* window) @extern("SDL_MaximizeWindow");
+extern fn bool minimize_window(SDL_Window* window) @extern("SDL_MinimizeWindow");
+extern fn bool focus_window(SDL_Window* window) @extern("SDL_RaiseWindow");
+extern fn bool restore_window(SDL_Window* window) @extern("SDL_RestoreWindow");
+extern fn bool get_bordered(SDL_Window* window) @extern("SDL_GetWindowBordered");
+extern fn bool set_bordered(SDL_Window* window, bool bordered) @extern("SDL_SetWindowBordered");
+extern fn bool get_focusable(SDL_Window* window) @extern("SDL_GetWindowFocusable");
+extern fn bool set_focusable(SDL_Window* window, bool focusable) @extern("SDL_SetWindowFocusable");
+extern fn bool get_fullscreen(SDL_Window* window) @extern("SDL_GetWindowFullscreen");
+extern fn bool set_fullscreen(SDL_Window* window, bool fullscreen) @extern("SDL_SetWindowFullscreen");
+extern fn DisplayMode* get_window_fullscreen_mode(SDL_Window* window) @extern("SDL_GetWindowFullscreenMode");
+extern fn bool set_window_fullscreen_mode(SDL_Window* window, DisplayMode* mode) @extern("SDL_SetWindowFullscreenMode");
+extern fn float get_opacity(SDL_Window* window) @extern("SDL_GetWindowOpacity");
+extern fn bool set_opacity(SDL_Window* window, float opacity) @extern("SDL_SetWindowOpacity");
+extern fn ProgressState get_progress_state(SDL_Window* window) @extern("SDL_GetWindowProgressState");
+extern fn bool set_progress_state(SDL_Window* window, ProgressState state) @extern("SDL_SetWindowProgressState");
+extern fn float get_progress_value(SDL_Window* window) @extern("SDL_GetWindowProgressValue");
+extern fn bool set_progress_value(SDL_Window* window, float value) @extern("SDL_SetWindowProgressValue");
+extern fn bool get_resizeable(SDL_Window* window) @extern("SDL_GetWindowResizable");
+extern fn bool set_resizeable(SDL_Window* window, bool resizable) @extern("SDL_SetWindowResizable");
+extern fn bool get_size(SDL_Window* window, int* w, int* h) @extern("SDL_GetWindowSize");
+extern fn bool set_size(SDL_Window* window, int w, int h) @extern("SDL_SetWindowSize");
+extern fn char* get_title(SDL_Window* window) @extern("SDL_GetWindowTitle");
+extern fn bool set_title(SDL_Window* window, char* title) @extern("SDL_SetWindowTitle");
+extern fn bool show_window(SDL_Window* window) @extern("SDL_ShowWindow");
+extern fn bool show_system_menu(SDL_Window* window, int x, int y) @extern("SDL_ShowWindowSystemMenu");
+
