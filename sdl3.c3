@@ -357,6 +357,11 @@ enum GLAttr {
   EGL_PLATFORM,
 }
 
+struct Rect {
+  int x,y;
+  int w,h;
+}
+
 union SDL_Event {
   uint type;
 
@@ -544,4 +549,8 @@ extern fn char* get_title(SDL_Window* window) @extern("SDL_GetWindowTitle");
 extern fn bool set_title(SDL_Window* window, char* title) @extern("SDL_SetWindowTitle");
 extern fn bool show_window(SDL_Window* window) @extern("SDL_ShowWindow");
 extern fn bool show_system_menu(SDL_Window* window, int x, int y) @extern("SDL_ShowWindowSystemMenu");
+
+// Display
+extern fn DisplayID get_primary_display() @extern("SDL_GetPrimaryDisplay");
+extern fn bool get_display_bounds(DisplayID displayID, Rect* rect) @extern("SDL_GetDisplayBounds");
 
