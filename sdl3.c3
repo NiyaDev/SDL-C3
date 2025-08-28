@@ -363,7 +363,7 @@ struct Rect {
 }
 
 union SDL_Event {
-  uint type;
+  EventType type;
 
   SDL_KeyboardEvent key;
   SDL_MouseMotionEvent motion;
@@ -373,33 +373,141 @@ union SDL_Event {
   char[128] padding;
 }
 
-// Basic events
-const FIRSTEVENT              = 0x0000;
-const QUIT                    = 0x0100;
-const APP_TERMINATING         = 0x0101;
-const APP_LOWMEMORY           = 0x0102;
-const APP_WILLENTERBACKGROUND = 0x0103;
-const APP_DIDENTERBACKGROUND  = 0x0104;
-const APP_WILLENTERFOREGROUND = 0x0105;
-const APP_DIDENTERFOREGROUND  = 0x0106;
+enum EventType : const CInt {
+  FIRSTEVENT                  = 0x000,
 
-// Keyboard events
-const KEYDOWN       = 0x0300;
-const KEYUP         = 0x0301;
-const TEXTEDITING   = 0x0302;
-const TEXTINPUT     = 0x0303;
-const KEYMAPCHANGED = 0x0304;
+  // Application events
+  QUIT                        = 0x100,
+  TERMINATING                 = 0x101,
+  LOW_MEMORY                  = 0x102,
+  WILL_ENTER_BACKGROUND       = 0x103,
+  DID_ENTER_BACKGROUND        = 0x104,
+  WILL_ENTER_FOREGROUND       = 0x105,
+  DID_ENTER_FOREGROUND        = 0x106,
 
-// Mouse events
-const MOUSEMOTION     = 0x0400;
-const MOUSEBUTTONDOWN = 0x0401;
-const MOUSEBUTTONUP   = 0x0402;
-const MOUSEWHEEL      = 0x0403;
+  // Display events
+  DISPLAY_ORIENTATION         = 0x150,
+  DISPLAY_ADDED               = 0x151,
+  DISPLAY_REMOVED             = 0x152,
+  DISPLAY_MOVED               = 0x153,
+  DISPLAY_DESKTOP_MODE_CHANGED  = 0x154,
+  DISPLAY_CURRENT_MODE_CHANGED  = 0x155,
+  DISPLAY_CONTENT_SCALE_CHANGED = 0x156,
+
+  // Window events
+  WINDOW_SHOWN                = 0x202,
+  WINDOW_HIDDEN               = 0x203,
+  WINDOW_EXPOSED              = 0x204,
+  WINDOW_MOVED                = 0x205,
+  WINDOW_RESIZED              = 0x206,
+  WINDOW_PIXEL_SIZE_CHANGED   = 0x207,
+  WINDOW_METAL_VIEW_RESIZED   = 0x208,
+  WINDOW_MINIMIZED            = 0x209,
+  WINDOW_MAXIMIZED            = 0x20A,
+  WINDOW_RESTORED             = 0x20B,
+  WINDOW_MOUSE_ENTER          = 0x20C,
+  WINDOW_MOUSE_LEAVE          = 0x20D,
+  WINDOW_FOCUS_GAINED         = 0x20E,
+  WINDOW_FOCUS_LOST           = 0x20F,
+  WINDOW_CLOSE_REQUESTED      = 0x210,
+  WINDOW_HIT_TEST             = 0x211,
+  WINDOW_ICCPROF_CHANGED      = 0x212,
+  WINDOW_DISPLAY_CHANGED      = 0x213,
+  WINDOW_DISPLAY_SCALE_CHANGED= 0x214,
+  WINDOW_SAFE_AREA_CHANGED    = 0x215,
+  WINDOW_OCCLUDED             = 0x216,
+  WINDOW_ENTER_FULLSCREEN     = 0x217,
+  WINDOW_LEAVE_FULLSCREEN     = 0x218,
+  WINDOW_DESTROYED            = 0x219,
+  WINDOW_HDR_STATE_CHANGED    = 0x21A,
+
+  // Keyboard Events
+  KEY_DOWN                    = 0x300,
+  KEY_UP                      = 0x301,
+  TEXT_EDITING                = 0x302,
+  TEXT_INPUT                  = 0x303,
+  KEYMAP_CHANGED              = 0x304,
+  KEYBOARD_ADDED              = 0x305,
+  KEYBOARD_REMOVED            = 0x306,
+  TEXT_EDITING_CANDIDATE      = 0x307,
+
+  // Mouse events
+  MOUSE_MOTION                = 0x400,
+  MOUSE_BUTTON_DOWN           = 0x401,
+  MOUSE_BUTTON_UP             = 0x402,
+  MOUSE_WHEEL                 = 0x403,
+  MOUSE_ADDED                 = 0x404,
+  MOUSE_REMOVED               = 0x405,
+
+  // Joystick events
+  JOYSTICK_AXIS_MOTION        = 0x600,
+  JOYSTICK_BALL_MOTION        = 0x601,
+  JOYSTICK_HAT_MOTION         = 0x602,
+  JOYSTICK_BUTTON_DOWN        = 0x603,
+  JOYSTICK_BUTTON_UP          = 0x604,
+  JOYSTICK_ADDED              = 0x605,
+  JOYSTICK_REMOVED            = 0x606,
+  JOYSTICK_BATTERY_UPDATED    = 0x607,
+
+  // Gamepad events
+  GAMEPAD_AXIS_MOTION         = 0x650,
+  GAMEPAD_BUTTON_DOWN         = 0x651,
+  GAMEPAD_BUTTON_UP           = 0x652,
+  GAMEPAD_ADDED               = 0x653,
+  GAMEPAD_REMOVED             = 0x654,
+  GAMEPAD_REMAPPED            = 0x655,
+  GAMEPAD_TOUCHPAD_DOWN       = 0x656,
+  GAMEPAD_TOUCHPAD_MOTION     = 0x657,
+  GAMEPAD_TOUCHPAD_UP         = 0x658,
+  GAMEPAD_SENSOR_UPDATE       = 0x659,
+  GAMEPAD_UPDATE_COMPLETE     = 0x65A,
+
+  // Touch events
+  FINGER_DOWN                 = 0x700,
+  FINGER_UP                   = 0x701,
+  FINGER_MOTION               = 0x702,
+
+  // Clipboard events
+  CLIPBOARD_UPDATE            = 0x900,
+
+  // Drop events
+  DROP_FILE                   = 0x1000,
+  DROP_TEXT                   = 0x1001,
+  DROP_BEGIN                  = 0x1002,
+  DROP_COMPLETE               = 0x1003,
+  DROP_POSITION               = 0x1004,
+
+  // Sensor events
+  SENSOR_UPDATE               = 0x1100,
+
+  // Render events
+  RENDER_TARGETS_RESET        = 0x2000,
+  RENDER_DEVICE_RESET         = 0x2001,
+
+  // Audio events
+  AUDIO_DEVICE_ADDED          = 0x2100,
+  AUDIO_DEVICE_REMOVED        = 0x2101,
+  AUDIO_DEVICE_FORMAT_CHANGED = 0x2102,
+
+  // Pen events
+  PEN_DOWN                    = 0x2200,
+  PEN_UP                      = 0x2201,
+  PEN_MOTION                  = 0x2202,
+  PEN_AXIS                    = 0x2203,
+
+  // Camera events
+  CAMERA_DEVICE_ADDED         = 0x2300,
+  CAMERA_DEVICE_REMOVED       = 0x2301,
+
+  // Private / user events
+  USER                        = 0x8000,
+  LAST                        = 0xFFFF
+}
+
 
 // TODO:
 // Controller events
 // Touch events
-// Window events
 // Touch device events
 // Drag and drop events
 // Clipboard events
