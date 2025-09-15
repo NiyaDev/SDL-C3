@@ -619,6 +619,7 @@ extern fn char* get_error() @extern("SDL_GetError");
 // OpenGL
 extern fn SDL_GLContext* gl_create_context(SDL_Window*) @extern("SDL_GL_CreateContext");
 extern fn bool gl_make_current(SDL_Window*, SDL_GLContext*) @extern("SDL_GL_MakeCurrent");
+extern fn bool gl_destroy_context(SDL_GLContext* context) @extern("SDL_GL_DestroyContext");
 extern fn bool gl_set_attribute(GLAttr, int) @extern("SDL_GL_SetAttribute");
 extern fn bool gl_swap_window(SDL_Window*) @extern("SDL_GL_SwapWindow");
 
