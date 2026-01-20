@@ -374,7 +374,7 @@ union SDL_Event {
 }
 
 enum EventType : const CInt {
-  FIRSTEVENT                  = 0x000,
+  FIRST                       = 0x000,
 
   // Application events
   QUIT                        = 0x100,
@@ -385,19 +385,26 @@ enum EventType : const CInt {
   WILL_ENTER_FOREGROUND       = 0x105,
   DID_ENTER_FOREGROUND        = 0x106,
 
+  LOCALE_CHANGED              = 0x107,
+  SYSTEM_THEME_CHANGED        = 0x108,
+
   // Display events
-  DISPLAY_ORIENTATION         = 0x150,
-  DISPLAY_ADDED               = 0x151,
-  DISPLAY_REMOVED             = 0x152,
-  DISPLAY_MOVED               = 0x153,
-  DISPLAY_DESKTOP_MODE_CHANGED  = 0x154,
-  DISPLAY_CURRENT_MODE_CHANGED  = 0x155,
-  DISPLAY_CONTENT_SCALE_CHANGED = 0x156,
+  DISPLAY_ORIENTATION           = 0x151,
+  DISPLAY_ADDED                 = 0x152,
+  DISPLAY_REMOVED               = 0x153,
+  DISPLAY_MOVED                 = 0x154,
+  DISPLAY_DESKTOP_MODE_CHANGED  = 0x155,
+  DISPLAY_CURRENT_MODE_CHANGED  = 0x156,
+  DISPLAY_CONTENT_SCALE_CHANGED = 0x157,
+  DISPLAY_USABLE_BOUNDS_CHANGED = 0x158,
+  DISPLAY_FIRST                 = DISPLAY_ORIENTATION,
+  DISPLAY_LAST                  = DISPLAY_USABLE_BOUNDS_CHANGED,
 
   // Window events
   WINDOW_SHOWN                = 0x202,
   WINDOW_HIDDEN               = 0x203,
   WINDOW_EXPOSED              = 0x204,
+
   WINDOW_MOVED                = 0x205,
   WINDOW_RESIZED              = 0x206,
   WINDOW_PIXEL_SIZE_CHANGED   = 0x207,
@@ -420,6 +427,8 @@ enum EventType : const CInt {
   WINDOW_LEAVE_FULLSCREEN     = 0x218,
   WINDOW_DESTROYED            = 0x219,
   WINDOW_HDR_STATE_CHANGED    = 0x21A,
+  WINDOW_FIRST                = WINDOW_SHOWN,
+  WINDOW_LAST                 = WINDOW_HDR_STATE_CHANGED,
 
   // Keyboard Events
   KEY_DOWN                    = 0x300,
@@ -429,7 +438,9 @@ enum EventType : const CInt {
   KEYMAP_CHANGED              = 0x304,
   KEYBOARD_ADDED              = 0x305,
   KEYBOARD_REMOVED            = 0x306,
-  TEXT_EDITING_CANDIDATE      = 0x307,
+  TEXT_EDITING_CANDIDATES     = 0x307,
+  SCREEN_KEYBOARD_SHOWN       = 0x308,
+  SCREEN_KEYBOARD_HIDDEN      = 0x309,
 
   // Mouse events
   MOUSE_MOTION                = 0x400,
@@ -448,6 +459,7 @@ enum EventType : const CInt {
   JOYSTICK_ADDED              = 0x605,
   JOYSTICK_REMOVED            = 0x606,
   JOYSTICK_BATTERY_UPDATED    = 0x607,
+  JOYSTICK_UPDATE_COMPLETE    = 0x608,
 
   // Gamepad events
   GAMEPAD_AXIS_MOTION         = 0x650,
@@ -461,11 +473,17 @@ enum EventType : const CInt {
   GAMEPAD_TOUCHPAD_UP         = 0x658,
   GAMEPAD_SENSOR_UPDATE       = 0x659,
   GAMEPAD_UPDATE_COMPLETE     = 0x65A,
+  GAMEPAD_STEAM_HANDLE_UPDATED= 0x65B,
 
   // Touch events
   FINGER_DOWN                 = 0x700,
   FINGER_UP                   = 0x701,
   FINGER_MOTION               = 0x702,
+  FINGER_CANCELED             = 0x703,
+
+  PINCH_BEGIN                 = 0x710,
+  PINCH_UPDATE                = 0x711,
+  PINCH_END                   = 0x712,
 
   // Clipboard events
   CLIPBOARD_UPDATE            = 0x900,
@@ -477,27 +495,33 @@ enum EventType : const CInt {
   DROP_COMPLETE               = 0x1003,
   DROP_POSITION               = 0x1004,
 
+  AUDIO_DEVICE_ADDED          = 0x1100,
+  AUDIO_DEVICE_REMOVED        = 0x1101,
+  AUDIO_DEVICE_FORMAT_CHANGED = 0x1102,
+
   // Sensor events
-  SENSOR_UPDATE               = 0x1100,
+  SENSOR_UPDATE               = 0x1200,
+
+  // Pen events
+  PEN_PROXIMITY_IN            = 0x1300,
+  PEN_PROXIMITY_OUT           = 0x1301,
+  PEN_DOWN                    = 0x1302,
+  PEN_UP                      = 0x1303,
+  PEN_BUTTON_DOWN             = 0x1304,
+  PEN_BUTTON_UP               = 0x1305,
+  PEN_MOTION                  = 0x1306,
+  PEN_AXIS                    = 0x1307,
+
+  // Camera hotplug events
+  CAMERA_DEVICE_ADDED         = 0x1400,
+  CAMERA_DEVICE_REMOVED       = 0x1401,
+  CAMERA_DEVICE_APPROVED      = 0x1402,
+  CAMERA_DEVICE_DENIED        = 0x1403,
 
   // Render events
   RENDER_TARGETS_RESET        = 0x2000,
   RENDER_DEVICE_RESET         = 0x2001,
-
-  // Audio events
-  AUDIO_DEVICE_ADDED          = 0x2100,
-  AUDIO_DEVICE_REMOVED        = 0x2101,
-  AUDIO_DEVICE_FORMAT_CHANGED = 0x2102,
-
-  // Pen events
-  PEN_DOWN                    = 0x2200,
-  PEN_UP                      = 0x2201,
-  PEN_MOTION                  = 0x2202,
-  PEN_AXIS                    = 0x2203,
-
-  // Camera events
-  CAMERA_DEVICE_ADDED         = 0x2300,
-  CAMERA_DEVICE_REMOVED       = 0x2301,
+  RENDER_DEVICE_LOST          = 0x2002,
 
   // Private / user events
   USER                        = 0x8000,
@@ -608,6 +632,7 @@ enum ProgressState {
 alias SDL_Window = void;
 alias SDL_Surface = void;
 alias SDL_GLContext = void;
+alias SDL_FunctionPointer = fn void*();
 
 extern fn bool init(uint) @extern("SDL_Init");
 extern fn SDL_Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
@@ -622,6 +647,7 @@ extern fn bool gl_make_current(SDL_Window*, SDL_GLContext*) @extern("SDL_GL_Make
 extern fn bool gl_destroy_context(SDL_GLContext* context) @extern("SDL_GL_DestroyContext");
 extern fn bool gl_set_attribute(GLAttr, int) @extern("SDL_GL_SetAttribute");
 extern fn bool gl_swap_window(SDL_Window*) @extern("SDL_GL_SwapWindow");
+extern fn SDL_FunctionPointer gl_get_proc_address(char* proc) @extern("SDL_GL_GetProcAddress");
 
 // Events
 extern fn bool poll_event(SDL_Event*) @extern("SDL_PollEvent");
