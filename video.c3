@@ -1,7 +1,6 @@
 
 module sdl3;
 
-
 // Types
 alias DisplayID = uint;
 alias DisplayModeData = void;

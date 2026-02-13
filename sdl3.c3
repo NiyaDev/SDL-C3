@@ -908,10 +908,8 @@ alias PixelFormat = uint;
 alias Surface = void;
 alias FunctionPointer = fn void*();
 
-extern fn bool init(uint) @extern("SDL_Init");
 extern fn Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
 extern fn ulong get_ticks() @extern("SDL_GetTicks");
-extern fn void quit() @extern("SDL_Quit");
 
 extern fn char* get_error() @extern("SDL_GetError");
 
