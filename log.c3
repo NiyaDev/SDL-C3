@@ -43,7 +43,7 @@ enum SDL_LogPriority {
 }
 
 // Functions
-extern fn LogOutputFunction getDefaultLogOutputFunction(void) @extern("SDL_GetDefaultLogOutputFunction");
+extern fn LogOutputFunction getDefaultLogOutputFunction() @extern("SDL_GetDefaultLogOutputFunction");
 extern fn void getLogOutputFunction(LogOutputFunction* callback, void** userdata) @extern("SDL_GetLogOutputFunction");
 extern fn LogPriority getLogPriority(int category) @extern("SDL_GetLogPriority");
 extern fn void log(char* fmt, ...) @extern("SDL_Log");

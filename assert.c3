@@ -27,7 +27,7 @@ enum AssertState {
 // Functions
 extern fn AssertionHandler getAssertionHandler(void** puserdata) @extern("SDL_GetAssertionHandler");
 extern fn AssertData* getAssertionReport() @extern("SDL_GetAssertionReport");
-extern fn AssertionHandler getDefaultAssertionHandler(void) @extern("SDL_GetDefaultAssertionHandler");
+extern fn AssertionHandler getDefaultAssertionHandler() @extern("SDL_GetDefaultAssertionHandler");
 extern fn AssertState reportAssertion(AssertData* data, char* func, char* file, int line) @extern("SDL_ReportAssertion");
 extern fn void resetAssertionReport() @extern("SDL_ResetAssertionReport");
 extern fn void setAssertionHandler(AssertionHandler handler, void* userdata) @extern("SDL_SetAssertionHandler");
