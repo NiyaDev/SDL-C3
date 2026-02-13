@@ -636,16 +636,6 @@ struct Rect {
   int w,h;
 }
 
-alias PropertiesID = uint;
-enum PropertyType {
-  INVALID,
-  POINTER,
-  STRING,
-  NUMBER,
-  FLOAT,
-  BOOLEAN,
-}
-
 union SDL_Event {
   EventType type;
 
