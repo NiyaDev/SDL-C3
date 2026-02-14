@@ -892,8 +892,6 @@ struct SDL_MouseButtonEvent {
 
 //struct SDL_ {}
 
-alias PixelFormat = uint;
-
 
 alias Surface = void;
 alias FunctionPointer = fn void*();
