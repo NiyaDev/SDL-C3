@@ -628,14 +628,6 @@ const MOUSE_RIGHT  = 3;
 const MOUSE_X1     = 4;
 const MOUSE_X2     = 5;
 
-struct Point {
-  int x,y;
-}
-struct Rect {
-  int x,y;
-  int w,h;
-}
-
 union SDL_Event {
   EventType type;
 
