@@ -83,10 +83,10 @@ extern fn void removeSurfaceAlternateImages(Surface* surface) @extern("SDL_Remov
 extern fn Surface* rotateSurface(Surface* surface, float angle) @extern("SDL_RotateSurface");
 extern fn bool saveBMP(Surface* surface, char* file) @extern("SDL_SaveBMP");
 extern fn bool saveBMP_IO(Surface* surface, IOStream* dst, bool closeio) @extern("SDL_SaveBMP_IO");
-extern fn bool savePNG(Surface* surface, char* file) @extern;
+extern fn bool savePNG(Surface* surface, char* file) @extern("SDL_SavePNG");
 extern fn bool savePNG_IO(Surface* surface, IOStream* dst, bool closeio) @extern("SDL_SavePNG_IO");
 extern fn Surface* scaleSurface(Surface* surface, int width, int height, ScaleMode scaleMode) @extern("SDL_ScaleSurface");
-extern fn Surface* scaleSurface(Surface* surface, int width, int height, ScaleMode scaleMode) @extern("SDL_ScaleSurface");
+extern fn bool setSurfaceAlphaMod(Surface* surface, char alpha) @extern("SDL_SetSurfaceAlphaMod");
 extern fn bool setSurfaceBlendMode(Surface* surface, BlendMode blendMode) @extern("SDL_SetSurfaceBlendMode");
 extern fn bool setSurfaceClipRect(Surface* surface, Rect* rect) @extern("SDL_SetSurfaceClipRect");
 extern fn bool setSurfaceColorKey(Surface* surface, bool enabled, uint key) @extern("SDL_SetSurfaceColorKey");

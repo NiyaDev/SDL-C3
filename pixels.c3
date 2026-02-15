@@ -243,7 +243,5 @@ extern fn void getRGB(uint pixelvalue, PixelFormatDetails* format, Palette* pale
 extern fn void getRGBA(uint pixelvalue, PixelFormatDetails* format, Palette* palette, char* r, char* g, char* b, char* a) @extern("SDL_GetRGBA");
 extern fn uint mapRGB(PixelFormatDetails* format, Palette* palette, char r, char g, char b) @extern("SDL_MapRGB");
 extern fn uint mapRGBA(PixelFormatDetails* format, Palette* palette, char r, char g, char b, char a) @extern("SDL_MapRGBA");
-extern fn uint mapSurfaceRGB(Surface* surface, char r, char g, char b) @extern("SDL_MapSurfaceRGB");
-extern fn uint mapSurfaceRGBA(Surface* surface, char r, char g, char b, char a) @extern("SDL_MapSurfaceRGBA");
 extern fn bool setPaletteColors(Palette* palette, Color* colors, int firstcolor, int ncolors) @extern("SDL_SetPaletteColors");
 
