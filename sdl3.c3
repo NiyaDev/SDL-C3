@@ -885,10 +885,8 @@ struct SDL_MouseButtonEvent {
 //struct SDL_ {}
 
 
-alias Surface = void;
 alias FunctionPointer = fn void*();
 
-extern fn Surface* create_surface(int, int, uint, void*, int) @extern("SDL_CreateSurface");
 extern fn ulong get_ticks() @extern("SDL_GetTicks");
 
 extern fn char* get_error() @extern("SDL_GetError");
