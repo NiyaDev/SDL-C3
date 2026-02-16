@@ -715,7 +715,7 @@ extern fn void filterEvents(EventFilter filter, void* userdata) @extern("SDL_Fil
 extern fn void flushEvent(uint type) @extern("SDL_FlushEvent");
 extern fn void flushEvents(uint minType, uint maxType) @extern("SDL_FlushEvents");
 extern fn int getEventDescription(Event* event, char* buf, int buflen) @extern("SDL_GetEventDescription");
-extern fn bool getEventFilter(EventFilter* filter, void** userdata) @extern(SDL_GetEventFilter);
+extern fn bool getEventFilter(EventFilter* filter, void** userdata) @extern("SDL_GetEventFilter");
 extern fn Window* getWindowFromEvent(Event* event) @extern("SDL_GetWindowFromEvent");
 extern fn bool hasEvent(uint type) @extern("SDL_HasEvent");
 extern fn bool hasEvents(uint minType, uint maxType) @extern("SDL_HasEvents");
