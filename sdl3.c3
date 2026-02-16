@@ -628,103 +628,14 @@ const MOUSE_RIGHT  = 3;
 const MOUSE_X1     = 4;
 const MOUSE_X2     = 5;
 
-
-
-// TODO:
-// Controller events
-// Touch events
-// Touch device events
-// Drag and drop events
-// Clipboard events
-
-struct SDL_KeyboardEvent {
-  uint type;
-  uint reserved;
-  
-  ulong timestamp;
-  uint windowID;
-  uint which;
-  uint scancode; // Make enum? https://wiki.libsdl.org/SDL3/SDL_Scancode
-  uint key;
-  ushort mod;
-  ushort raw;
-  bool down;
-  bool repeat;
-}
-struct SDL_TextEditingEvent {
-  uint type;
-  uint reserved;
-
-  ulong timestamp;
-  uint windowID;
-  char* text;
-  int start;
-  int length;
-}
-struct SDL_TextInputEvent {
-  uint type;
-  uint reserved;
-
-  ulong timestamp;
-  uint windowID;
-  char* text;
-}
 extern fn bool start_text_input(Window* window) @extern("SDL_StartTextInput");
 extern fn bool stop_text_input(Window* window) @extern("SDL_StopTextInput");
-
-struct SDL_MouseWheelEvent {
-  uint type;
-  uint reserved;
-
-  ulong timestamp;
-  uint windowID;
-  uint which;
-  float x;
-  float y;
-  int direction;
-  float mouse_x;
-  float mouse_y;
-  int int_x;
-  int int_y;
-}
-
-struct SDL_MouseMotionEvent {
-  uint type;
-  uint reserved;
-
-  ulong timestamp;
-  uint windowID;
-  uint which;
-  uint state;
-  float x, y;
-  float xrel, yrel;
-}
-
-struct SDL_MouseButtonEvent {
-  uint type;
-  uint reserved;
-
-  ulong timestamp;
-  uint windowID;
-  uint which;
-  char button;
-  bool down;
-  char clicks;
-  char padding;
-  float x, y;
-}
-
-//struct SDL_ {}
-
 
 alias FunctionPointer = fn void*();
 
 extern fn ulong get_ticks() @extern("SDL_GetTicks");
 
-extern fn char* get_error() @extern("SDL_GetError");
-
 // Events
-extern fn bool poll_event(SDL_Event*) @extern("SDL_PollEvent");
 extern fn uint get_mouse_state(float* x, float* y) @extern("SDL_GetMouseState");
 
 
