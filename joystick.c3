@@ -19,7 +19,7 @@ bitstruct JoystickHat : int {
   bool up:    0;
   bool right: 1;
   bool down:  2;
-  bool up:    3;
+  bool left:  3;
 }
 
 // Structs
@@ -80,4 +80,47 @@ extern fn GuID getJoystickGUIDForID(JoystickID instance_id) @extern("SDL_GetJoys
 extern fn void getJoystickGUIDInfo(GuID guid, ushort* vendor, ushort* product, ushort* version, ushort* crc16) @extern("SDL_GetJoystickGUIDInfo");
 extern fn char getJoystickHat(Joystick* joystick, JoystickHat hat) @extern("SDL_GetJoystickHat");
 extern fn JoystickID getJoystickID(Joystick* joystick) @extern("SDL_GetJoystickID");
+extern fn char* getJoystickName(Joystick* joystick) @extern("SDL_GetJoystickName");
+extern fn char* getJoystickNameForID(JoystickID instance_id) @extern("SDL_GetJoystickNameForID");
+extern fn char* getJoystickPath(Joystick* joystick) @extern("SDL_GetJoystickPath");
+extern fn char* getJoystickPathForID(JoystickID instance_id) @extern("SDL_GetJoystickPathForID");
+extern fn int getJoystickPlayerIndex(Joystick *joystick) @extern("SDL_GetJoystickPlayerIndex");
+extern fn int getJoystickPlayerIndexForID(JoystickID instance_id) @extern("SDL_GetJoystickPlayerIndexForID");
+extern fn PowerState getJoystickPowerInfo(Joystick* joystick, int* percent) @extern("SDL_GetJoystickPowerInfo");
+extern fn ushort getJoystickProduct(Joystick* joystick) @extern("SDL_GetJoystickProduct");
+extern fn ushort getJoystickProductForID(JoystickID instance_id) @extern("SDL_GetJoystickProductForID");
+extern fn ushort getJoystickProductVersion(Joystick* joystick) @extern("SDL_GetJoystickProductVersion");
+extern fn ushort getJoystickProductVersionForID(JoystickID instance_id) @extern("SDL_GetJoystickProductVersionForID");
+extern fn PropertiesID getJoystickProperties(Joystick* joystick) @extern("SDL_GetJoystickProperties");
+extern fn JoystickID* getJoysticks(int* count) @extern("SDL_GetJoysticks");
+extern fn char* getJoystickSerial(Joystick* joystick) @extern("SDL_GetJoystickSerial");
+extern fn JoystickType getJoystickType(Joystick* joystick) @extern("SDL_GetJoystickType");
+extern fn JoystickType getJoystickTypeForID(JoystickID instance_id) @extern("SDL_GetJoystickTypeForID");
+extern fn ushort getJoystickVendor(Joystick* joystick) @extern("SDL_GetJoystickVendor");
+extern fn ushort getJoystickVendorForID(JoystickID instance_id) @extern("SDL_GetJoystickVendorForID");
+extern fn int getNumJoystickAxes(Joystick* joystick) @extern("SDL_GetNumJoystickAxes");
+extern fn int getNumJoystickBalls(Joystick* joystick) @extern("SDL_GetNumJoystickBalls");
+extern fn int getNumJoystickButtons(Joystick* joystick) @extern("SDL_GetNumJoystickButtons");
+extern fn int getNumJoystickHats(Joystick* joystick) @extern("SDL_GetNumJoystickHats");
+extern fn bool hasJoystick() @extern("SDL_HasJoystick");
+extern fn bool isJoystickVirtual(JoystickID instance_id) @extern("SDL_IsJoystickVirtual");
+extern fn bool joystickConnected(Joystick* joystick) @extern("SDL_JoystickConnected");
+extern fn bool joystickEventsEnabled() @extern("SDL_JoystickEventsEnabled");
+extern fn void lockJoysticks() @extern("SDL_LockJoysticks");
+extern fn Joystick* openJoystick(JoystickID instance_id) @extern("SDL_OpenJoystick");
+extern fn bool rumbleJoystick(Joystick* joystick, ushort low_frequency_rumble, ushort high_frequency_rumble, uint duration_ms) @extern("SDL_RumbleJoystick");
+extern fn bool rumbleJoystickTriggers(Joystick* joystick, ushort left_rumble, ushort right_rumble, uint duration_ms) @extern("SDL_RumbleJoystickTriggers");
+extern fn bool sendJoystickEffect(Joystick* joystick, void* data, int size) @extern("SDL_SendJoystickEffect");
+extern fn bool sendJoystickVirtualSensorData(Joystick* joystick, SensorType type, ulong sensor_timestamp, float* data, int num_values) @extern("SDL_SendJoystickVirtualSensorData");
+extern fn void setJoystickEventsEnabled(bool enabled) @extern("SDL_SetJoystickEventsEnabled");
+extern fn bool setJoystickLED(Joystick* joystick, char red, char green, char blue) @extern("SDL_SetJoystickLED");
+extern fn bool setJoystickPlayerIndex(Joystick* joystick, int player_index);
+extern fn bool setJoystickVirtualAxis(Joystick* joystick, int axis, short value) @extern("SDL_SetJoystickVirtualAxis");
+extern fn bool setJoystickVirtualBall(Joystick* joystick, int ball, short xrel, short yrel) @extern("SDL_SetJoystickVirtualBall");
+extern fn bool setJoystickVirtualButton(Joystick* joystick, int button, bool down) @extern("SDL_SetJoystickVirtualButton");
+extern fn bool setJoystickVirtualHat(Joystick* joystick, int hat, char value) @extern("SDL_SetJoystickVirtualHat");
+extern fn bool setJoystickVirtualTouchpad(Joystick* joystick, int touchpad, int finger, bool down, float x, float y, float pressure) @extern("SDL_SetJoystickVirtualTouchpad");
+extern fn bool tryLockJoysticks() @extern("SDL_TryLockJoysticks");
+extern fn void unlockJoysticks() @extern("SDL_UnlockJoysticks");
+extern fn void updateJoysticks() @extern("SDL_UpdateJoysticks");
 
