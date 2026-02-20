@@ -62,6 +62,19 @@ enum JoystickConnectionState : const CInt {
   WIRED    =  1,
   WIRELESS =  2,
 }
+enum JoystickType {
+  UNKNOWN,
+  GAMEPAD,
+  WHEEL,
+  ARCADE_STICK,
+  FLIGHT_STICK,
+  DANCE_PAD,
+  GUITAR,
+  DRUM_KIT,
+  ARCADE_PAD,
+  THROTTLE,
+  COUNT,
+}
 
 // Functions
 extern fn JoystickID attachVirtualJoystick(VirtualJoystickDesc* desc) @extern("SDL_AttachVirtualJoystick");

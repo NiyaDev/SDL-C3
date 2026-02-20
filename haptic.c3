@@ -84,7 +84,7 @@ struct HapticDirection {
 }
 struct HapticLeftRight {
   /* Header */
-  SDL_HapticEffectType type;  /**< SDL_HAPTIC_LEFTRIGHT */
+  HapticEffectType type;  /**< SDL_HAPTIC_LEFTRIGHT */
 
   /* Replay */
   uint length;          /**< Duration of the effect in milliseconds. */

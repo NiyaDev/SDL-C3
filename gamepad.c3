@@ -23,7 +23,7 @@ struct GamepadBinding {
   union output {
     GamepadButton button;
     struct axis {
-      SDL_GamepadAxis axis;
+      GamepadAxis axis;
       int axis_min;
       int axis_max;
     }
