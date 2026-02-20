@@ -124,7 +124,6 @@ extern fn bool getGamepadButton(Gamepad* gamepad, GamepadButton button) @extern(
 extern fn GamepadButton getGamepadButtonFromString(char* str) @extern("SDL_GetGamepadButtonFromString");
 extern fn GamepadButtonLabel getGamepadButtonLabel(Gamepad* gamepad, GamepadButton button) @extern("SDL_GetGamepadButtonLabel");
 extern fn GamepadButtonLabel getGamepadButtonLabelForType(GamepadType type, GamepadButton button) @extern("SDL_GetGamepadButtonLabelForType");
-extern fn GamepadButtonLabel getGamepadButtonLabelForType(GamepadType type, GamepadButton button) @extern("SDL_");
 extern fn ushort getGamepadFirmwareVersion(Gamepad* gamepad) @extern("SDL_GetGamepadFirmwareVersion");
 extern fn Gamepad* getGamepadFromID(JoystickID instance_id) @extern("SDL_GetGamepadFromID");
 extern fn Gamepad* getGamepadFromPlayerIndex(int player_index) @extern("SDL_GetGamepadFromPlayerIndex");
