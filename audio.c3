@@ -16,7 +16,7 @@ struct AudioSpec {
 }
 
 // Enums
-enum AudioFormat {
+enum AudioFormat : const CInt {
   UNKNOWN   = 0x0000u,  /**< Unspecified audio format */
   U8        = 0x0008u,  /**< Unsigned 8-bit samples */
     /* SDL_DEFINE_AUDIO_FORMAT(0, 0, 0, 8), */
