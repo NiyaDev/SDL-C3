@@ -33,6 +33,6 @@ extern fn char* getThreadName(Thread* thread) @extern("SDL_GetThreadName");
 extern fn ThreadState getThreadState(Thread* thread) @extern("SDL_GetThreadState");
 extern fn void* getTLS(TLsID* id) @extern("SDL_GetTLS");
 extern fn bool setCurrentThreadPriority(ThreadPriority priority) @extern("SDL_SetCurrentThreadPriority");
-extern fn bool setTLS(TLsID* id, void* value, SDL_TLSDestructorCallback destructor) @extern("SDL_SetTLS");
+extern fn bool setTLS(TLsID* id, void* value, TLSDestructorCallback destructor) @extern("SDL_SetTLS");
 extern fn void waitThread(Thread* thread, int* status) @extern("SDL_WaitThread");
 

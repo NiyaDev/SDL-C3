@@ -47,7 +47,7 @@ extern fn bool tryLockRWLockForWriting(RWLock* rwlock) @extern("SDL_TryLockRWLoc
 extern fn bool tryWaitSemaphore(Semaphore* sem) @extern("SDL_TryWaitSemaphore");
 extern fn void unlockMutex(Mutex* mutex) @extern("SDL_UnlockMutex");
 extern fn void unlockRWLock(RWLock* rwlock) @extern("SDL_UnlockRWLock");
-extern fn void waitCondition(Condition* cond, SDL_Mutex *mutex) @extern("SDL_WaitCondition");
+extern fn void waitCondition(Condition* cond, Mutex *mutex) @extern("SDL_WaitCondition");
 extern fn bool waitConditionTimeout(Condition* cond, Mutex* mutex, int timeoutMS) @extern("SDL_WaitConditionTimeout");
 extern fn void waitSemaphore(Semaphore* sem) @extern("SDL_WaitSemaphore");
 extern fn bool waitSemaphoreTimeout(Semaphore* sem, int timeoutMS) @extern("SDL_WaitSemaphoreTimeout");
