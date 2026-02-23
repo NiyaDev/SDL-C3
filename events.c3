@@ -137,7 +137,7 @@ struct GamepadAxisEvent {
   short value;       /**< The axis value (range: -32768 to 32767) */
   ushort padding4;
 }
-struct SDL_GamepadButtonEvent {
+struct GamepadButtonEvent {
   /**< SDL_EVENT_GAMEPAD_BUTTON_DOWN,
     or SDL_EVENT_GAMEPAD_BUTTON_UP */
   EventType type;
@@ -425,7 +425,7 @@ struct PenTouchEvent {
   bool eraser;        /**< true if eraser end is used (not all pens support this). */
   bool down;          /**< true if the pen is touching or false if the pen is lifted off */
 }
-struct SDL_PinchFingerEvent {
+struct PinchFingerEvent {
   /**< ::SDL_EVENT_PINCH_BEGIN,
     or ::SDL_EVENT_PINCH_UPDATE,
     or ::SDL_EVENT_PINCH_END */
