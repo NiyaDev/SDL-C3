@@ -12,7 +12,7 @@ alias MainThreadCallback = fn void(void* userdata);
 bitstruct InitFlags : uint {
   bool audio    :  4;
   bool video    :  5;
-  bool joystick :  8;
+  bool joystick :  9;
   bool haptic   : 12;
   bool gamepad  : 13;
   bool events   : 14;

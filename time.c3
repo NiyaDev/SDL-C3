@@ -1,9 +1,6 @@
 
 module sdl3;
 
-// Types
-alias Time = ulong;
-
 // Structs
 struct DateTime {
   int year, month, day;

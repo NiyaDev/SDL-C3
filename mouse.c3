@@ -6,14 +6,12 @@ alias Cursor = void;
 alias MouseID = uint;
 alias MouseMotionTransformCallback = fn void(void* userdata, ulong timestamp, Window* window, MouseID mouseID, float* x, float* y);
 
-// Bitstructs
-bitstruct MouseButtonFlags : uint {
-  bool left:   1;
-  bool middle: 2;
-  bool right:  3;
-  bool x1:     4;
-  bool x2:     5;
-}
+alias MouseButtonFlags = uint;
+
+const MouseButtonFlags LEFT = 1;
+const MouseButtonFlags MIDDLE = 2;
+const MouseButtonFlags RIGHT = 3;
+const MouseButtonFlags X1 = 4;
 
 // Structs
 struct CursorFrameInfo {

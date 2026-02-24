@@ -3,30 +3,9 @@ module sdl3;
 import std::io;
 
 
-const INIT_AUDIO    = 0x00000010; /**< `SDL_INIT_AUDIO` implies `SDL_INIT_EVENTS` */
-const INIT_VIDEO    = 0x00000020; /**< `SDL_INIT_VIDEO` implies `SDL_INIT_EVENTS`, should be initialized on the main thread */
-const INIT_JOYSTICK = 0x00000200; /**< `SDL_INIT_JOYSTICK` implies `SDL_INIT_EVENTS` */
-const INIT_HAPTIC   = 0x00001000;
-const INIT_GAMEPAD  = 0x00002000; /**< `SDL_INIT_GAMEPAD` implies `SDL_INIT_JOYSTICK` */
-const INIT_EVENTS   = 0x00004000;
-const INIT_SENSOR   = 0x00008000; /**< `SDL_INIT_SENSOR` implies `SDL_INIT_EVENTS` */
-const INIT_CAMERA   = 0x00010000; /**< `SDL_INIT_CAMERA` implies `SDL_INIT_EVENTS` */
-
-const MOUSE_LEFT   = 1;
-const MOUSE_MIDDLE = 2;
-const MOUSE_RIGHT  = 3;
-const MOUSE_X1     = 4;
-const MOUSE_X2     = 5;
-
 extern fn bool start_text_input(Window* window) @extern("SDL_StartTextInput");
 extern fn bool stop_text_input(Window* window) @extern("SDL_StopTextInput");
 
-alias FunctionPointer = fn void*();
-
-extern fn ulong get_ticks() @extern("SDL_GetTicks");
-
-// Events
-extern fn uint get_mouse_state(float* x, float* y) @extern("SDL_GetMouseState");
 
 
 // Window management
