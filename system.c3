@@ -4,8 +4,8 @@ module sdl3;
 // Types
 alias IOSAnimationCallback = fn void(void* userdata);
 alias RequestAndroidPermissionCallback = fn void(void* userdata, char* permission, bool granted);
-alias WindowsMessageHook = fn bool(void* userdata, Msg* msg);
-alias X11EventHook = fn bool(void* userdata, XEvent* xevent);
+//alias WindowsMessageHook = fn bool(void* userdata, Win32_MSG* msg);
+//alias X11EventHook = fn bool(void* userdata, XEvent* xevent);
 
 // Enums
 enum Sandbox {
@@ -26,8 +26,8 @@ extern fn void* getAndroidJNIEnv() @extern("SDL_GetAndroidJNIEnv");
 extern fn int getAndroidSDKVersion() @extern("SDL_GetAndroidSDKVersion");
 extern fn int getDirect3D9AdapterIndex(DisplayID displayID) @extern("SDL_GetDirect3D9AdapterIndex");
 extern fn bool getDXGIOutputInfo(DisplayID displayID, int* adapterIndex, int* outputIndex) @extern("SDL_GetDXGIOutputInfo");
-extern fn bool getGDKDefaultUser(XUserHandle* outUserHandle) @extern("SDL_GetGDKDefaultUser");
-extern fn bool getGDKTaskQueue(XTaskQueueHandle* outTaskQueue) @extern("SDL_GetGDKTaskQueue");
+//extern fn bool getGDKDefaultUser(XUserHandle* outUserHandle) @extern("SDL_GetGDKDefaultUser");
+//extern fn bool getGDKTaskQueue(XTaskQueueHandle* outTaskQueue) @extern("SDL_GetGDKTaskQueue");
 extern fn Sandbox getSandbox() @extern("SDL_GetSandbox");
 extern fn bool isChromebook() @extern("SDL_IsChromebook");
 extern fn bool isDeXMode() @extern("SDL_IsDeXMode");
@@ -47,7 +47,7 @@ extern fn bool setiOSAnimationCallback(Window* window, int interval, IOSAnimatio
 extern fn void setiOSEventPump(bool enabled) @extern("SDL_SetiOSEventPump");
 extern fn bool setLinuxThreadPriority(long threadID, int priority) @extern("SDL_SetLinuxThreadPriority");
 extern fn bool setLinuxThreadPriorityAndPolicy(long threadID, int sdlPriority, int schedPolicy) @extern("SDL_SetLinuxThreadPriorityAndPolicy");
-extern fn void setWindowsMessageHook(WindowsMessageHook callback, void* userdata) @extern("SDL_SetWindowsMessageHook");
-extern fn void setX11EventHook(X11EventHook callback, void* userdata) @extern("SDL_SetX11EventHook");
+//extern fn void setWindowsMessageHook(WindowsMessageHook callback, void* userdata) @extern("SDL_SetWindowsMessageHook");
+//extern fn void setX11EventHook(X11EventHook callback, void* userdata) @extern("SDL_SetX11EventHook");
 extern fn bool showAndroidToast(char* message, int duration, int gravity, int xoffset, int yoffset) @extern("SDL_ShowAndroidToast");
 
