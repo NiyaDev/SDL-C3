@@ -7,12 +7,12 @@ alias CameraID = uint;
 
 // Structs
 struct CameraSpec {
-  PixelFormat format;     /**< Frame format */
-  Colorspace colorspace;  /**< Frame colorspace */
-  int width;                  /**< Frame width */
-  int height;                 /**< Frame height */
-  int framerate_numerator;     /**< Frame rate numerator ((num / denom) == FPS, (denom / num) == duration in seconds) */
-  int framerate_denominator;   /**< Frame rate denominator ((num / denom) == FPS, (denom / num) == duration in seconds) */
+  PixelFormat format;      /**< Frame format */
+  Colorspace colorspace;   /**< Frame colorspace */
+  int width;               /**< Frame width */
+  int height;              /**< Frame height */
+  int framerate_numerator; /**< Frame rate numerator ((num / denom) == FPS, (denom / num) == duration in seconds) */
+  int framerate_denominator; /**< Frame rate denominator ((num / denom) == FPS, (denom / num) == duration in seconds) */
 }
 
 // Enums

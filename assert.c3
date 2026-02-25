@@ -6,21 +6,21 @@ alias AssertionHandler = fn AssertState(AssertData* data, void* userdata);
 
 // Structs
 struct AssertData {
-    bool always_ignore;  /**< true if app should always continue when assertion is triggered. */
+    bool always_ignore; /**< true if app should always continue when assertion is triggered. */
     uint trigger_count; /**< Number of times this assertion has been triggered. */
-    char* condition;  /**< A string of this assert's test code. */
-    char* filename;  /**< The source file where this assert lives. */
-    int linenum;  /**< The line in `filename` where this assert lives. */
-    char* function;  /**< The name of the function where this assert lives. */
-    AssertData* next;  /**< next item in the linked list. */
+    char* condition;    /**< A string of this assert's test code. */
+    char* filename;     /**< The source file where this assert lives. */
+    int linenum;        /**< The line in `filename` where this assert lives. */
+    char* function;     /**< The name of the function where this assert lives. */
+    AssertData* next;   /**< next item in the linked list. */
 }
 
 // Enums
 enum AssertState {
-    RETRY,  /**< Retry the assert immediately. */
-    BREAK,  /**< Make the debugger trigger a breakpoint. */
-    ABORT,  /**< Terminate the program. */
-    IGNORE,  /**< Ignore the assert. */
+    RETRY,    /**< Retry the assert immediately. */
+    BREAK,    /**< Make the debugger trigger a breakpoint. */
+    ABORT,    /**< Terminate the program. */
+    IGNORE,   /**< Ignore the assert. */
     ALWAYS_IGNORE  /**< Ignore the assert from now on. */
 }
 

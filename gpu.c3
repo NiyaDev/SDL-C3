@@ -106,16 +106,16 @@ struct GPUColorTargetDescription {
 }
 struct GPUColorTargetInfo {
   GPUTexture *texture;         /**< The texture that will be used as a color target by a render pass. */
-  uint mip_level;                /**< The mip level to use as a color target. */
-  uint layer_or_depth_plane;     /**< The layer index or depth plane to use as a color target. This value is treated as a layer index on 2D array and cube textures, and as a depth plane on 3D textures. */
+  uint mip_level;              /**< The mip level to use as a color target. */
+  uint layer_or_depth_plane;   /**< The layer index or depth plane to use as a color target. This value is treated as a layer index on 2D array and cube textures, and as a depth plane on 3D textures. */
   FColor clear_color;          /**< The color to clear the color target to at the start of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
   GPULoadOp load_op;           /**< What is done with the contents of the color target at the beginning of the render pass. */
   GPUStoreOp store_op;         /**< What is done with the results of the render pass. */
   GPUTexture *resolve_texture; /**< The texture that will receive the results of a multisample resolve operation. Ignored if a RESOLVE* store_op is not used. */
-  uint resolve_mip_level;        /**< The mip level of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used. */
-  uint resolve_layer;            /**< The layer index of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used. */
-  bool cycle;                      /**< true cycles the texture if the texture is bound and load_op is not LOAD */
-  bool cycle_resolve_texture;      /**< true cycles the resolve texture if the resolve texture is bound. Ignored if a RESOLVE* store_op is not used. */
+  uint resolve_mip_level;      /**< The mip level of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used. */
+  uint resolve_layer;          /**< The layer index of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used. */
+  bool cycle;                  /**< true cycles the texture if the texture is bound and load_op is not LOAD */
+  bool cycle_resolve_texture;  /**< true cycles the resolve texture if the resolve texture is bound. Ignored if a RESOLVE* store_op is not used. */
   char padding1, padding2;
 }
 struct GPUComputePipelineCreateInfo {

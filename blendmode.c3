@@ -7,7 +7,6 @@ bitstruct BlendMode : uint {
   bool add:     1;
   bool mod:     2;
   bool mul:     3; // Also premul
-  bool invalid: 4; // 0x7FFFFFFFu
 }
 
 // Enums

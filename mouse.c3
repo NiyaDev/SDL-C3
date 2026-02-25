@@ -8,10 +8,20 @@ alias MouseMotionTransformCallback = fn void(void* userdata, ulong timestamp, Wi
 
 alias MouseButtonFlags = uint;
 
-const MouseButtonFlags LEFT = 1;
-const MouseButtonFlags MIDDLE = 2;
-const MouseButtonFlags RIGHT = 3;
-const MouseButtonFlags X1 = 4;
+const MouseButtonFlags BUTTON_LEFT = 1;
+const MouseButtonFlags BUTTON_MIDDLE = 2;
+const MouseButtonFlags BUTTON_RIGHT = 3;
+const MouseButtonFlags BUTTON_X1 = 4;
+const MouseButtonFlags BUTTON_X2 = 5;
+
+macro MouseButtonFlags @buttonMask(#a) {
+  return 1u << ((#a) - 1);
+}
+const BUTTON_LMASK   = @buttonMask(BUTTON_LEFT);
+const BUTTON_MMASK   = @buttonMask(BUTTON_MIDDLE);
+const BUTTON_RMASK   = @buttonMask(BUTTON_RIGHT);
+const BUTTON_X1MASK  = @buttonMask(BUTTON_X1);
+const BUTTON_X2MASK  = @buttonMask(BUTTON_X2);
 
 // Structs
 struct CursorFrameInfo {

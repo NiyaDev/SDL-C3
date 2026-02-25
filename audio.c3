@@ -10,9 +10,9 @@ alias AudioStreamDataCompleteCallback = fn void(void* userdata, void* buf, int b
 
 // Structs
 struct AudioSpec {
-  AudioFormat format;     /**< Audio data format */
-  int channels;               /**< Number of channels: 1 mono, 2 stereo, etc */
-  int freq;                   /**< sample rate: sample frames per second */
+  AudioFormat format; /**< Audio data format */
+  int channels;       /**< Number of channels: 1 mono, 2 stereo, etc */
+  int freq;           /**< sample rate: sample frames per second */
 }
 
 // Enums

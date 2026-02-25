@@ -77,7 +77,6 @@ extern fn IOStream* fromDynamicMemIO() @extern("SDL_IOFromDynamicMem");
 extern fn IOStream* fromFileIO(char* file, char* mode) @extern("SDL_IOFromFile");
 extern fn IOStream* fromMemIO(void* mem, usz size) @extern("SDL_IOFromMem");
 extern fn usz printfIO(IOStream* context, char* fmt, ...) @extern("SDL_IOprintf");
-//extern fn us vprintfIO(IOStream* context, char* fmt, va_list ap) @extern("SDL_IOvprintf");
 extern fn void* loadFile(char* file, usz* datasize) @extern("SDL_LoadFile");
 extern fn void* loadFile_IO(IOStream* src, usz* datasize, bool closeio) @extern("SDL_LoadFile_IO");
 extern fn IOStream* openIO(IOStreamInterface* iface, void* userdata) @extern("SDL_OpenIO");
