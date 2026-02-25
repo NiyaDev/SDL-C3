@@ -249,13 +249,20 @@ extern fn bool windowHasSurface(Window* window) @extern("SDL_WindowHasSurface");
 
 module sdl3::sdlgl;
 
-extern fn GLContext createContext(Window* window) @extern("SDL_GL_CreateContext");
+// Types
+alias Profile = uint;
+const Profile CONTEXT_PROFILE_CORE          = 0x0001;
+const Profile CONTEXT_PROFILE_COMPATIBILITY = 0x0002;
+const Profile CONTEXT_PROFILE_ES            = 0x0004;
+
+// Functions
+extern fn GLContext* createContext(Window* window) @extern("SDL_GL_CreateContext");
 extern fn bool destroyContext(GLContext* context) @extern("SDL_GL_DestroyContext");
 extern fn bool extensionSupported(char* extension) @extern("SDL_GL_ExtensionSupported");
 extern fn bool getAttribute(GLAttr attr, int* value) @extern("SDL_GL_GetAttribute");
 extern fn GLContext getCurrentContext() @extern("SDL_GL_GetCurrentContext");
 extern fn Window* getCurrentWindow() @extern("SDL_GL_GetCurrentWindow");
-extern fn FunctionPointer getProcAdress(char* proc) @extern("SDL_GL_GetProcAddress");
+extern fn FunctionPointer getProcAddress(char* proc) @extern("SDL_GL_GetProcAddress");
 extern fn bool getSwapInterval(int* interval) @extern("SDL_GL_GetSwapInterval");
 extern fn bool loadLibrary(char* path) @extern("SDL_GL_LoadLibrary");
 extern fn bool makeCurrent(Window* window, GLContext* context) @extern("SDL_GL_MakeCurrent");
